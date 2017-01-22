@@ -1,0 +1,31 @@
+{
+    "name": "jackh/yii2-material",
+
+    "type": "yii2-extension",
+
+    "description": "The Extension of MaterialUI for the Yii framework",
+    "keywords": ["yii2", "material"],
+    "license": "BSD-3-Clause",
+    "support": {
+        "source": "https://github.com/jayHuang332/yii2-material"
+    },
+    "authors": [
+        {
+            "name": "Jack.Huang",
+            "email": "jstrive@foxmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "jackh\\material\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
