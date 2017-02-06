@@ -348,6 +348,9 @@ class ActiveField extends \yii\widgets\ActiveField
           .panel-heading.note-toolbar .note-para .dropdown-menu>div:first-child {
             margin-bottom: 5px;
           }
+          .note-editor.note-frame {
+            border: 1px solid #DDDDDD;
+          }
         ');
         $this->form->view->registerJs('
           // 调整编辑器底部距离
