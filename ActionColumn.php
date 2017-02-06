@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace jackh\aurora;
+namespace jackh\material;
 
 use Yii;
 use yii\helpers\Html;

@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace jackh\aurora;
+namespace jackh\material;
 
 use Yii;
 use yii\helpers\Html;
@@ -69,7 +69,7 @@ class ActiveForm extends \yii\widgets\ActiveForm
      * @var string the default field class name when calling [[field()]] to create a new field.
      * @see fieldConfig
      */
-    public $fieldClass = 'jackh\aurora\ActiveField';
+    public $fieldClass = 'jackh\material\ActiveField';
     /**
      * @var array HTML attributes for the form tag. Default is `['role' => 'form']`.
      */
