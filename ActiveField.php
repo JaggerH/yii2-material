@@ -307,6 +307,13 @@ class ActiveField extends \yii\widgets\ActiveField
     public function datepicker($options = [])
     {
         Html::addCssClass($this->inputOptions, "datepicker");
+        $format = isset($options["format"]) ? $options["format"] : "Y-m-d";
+        if (!$this->model[$this->attribute]) {
+          $this->model[$this->attribute] = date($format);
+        } else {
+          $value = $this->model[$this->attribute];
+          $this->model[$this->attribute] = date($format, strtotime($value));
+        }
         return parent::textInput($options);
     }
 
@@ -330,7 +337,7 @@ class ActiveField extends \yii\widgets\ActiveField
               ["style", ["bold", "italic", "underline", "clear"]],
               ["height", ["height"]],
               ["Insert", ["hr", "link", "picture", "table", "video"]],
-              ["misc", ["fullscreen", "codeview", "undo", "redo", "help"]]
+              ["misc", ["codeview", "undo", "redo", "help"]]
             ]
           ',
           "minHeight" => 300,
