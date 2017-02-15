@@ -12,6 +12,11 @@ use yii\helpers\Html;
 
 class ActionColumn extends \yii\grid\ActionColumn
 {
+
+    public $headerOptions   = ["style" => "width: 20%"];
+    public $contentOptions  = ["class" => "td-actions"];
+    public $buttonOptions   = ["class" => "btn"];
+    public $specialOptions  = [];
     /**
      * Initializes the default button rendering callbacks.
      */
@@ -22,9 +27,11 @@ class ActionColumn extends \yii\grid\ActionColumn
                 $options = array_merge([
                     'title'      => Yii::t('yii', 'View'),
                     'aria-label' => Yii::t('yii', 'View'),
-                    'data-pjax'  => '0',
+                    'data-url'   => $url,
                 ], $this->buttonOptions);
-                return Html::a('<i class="fa fa-eye"></i>', $url, $options);
+                $options = isset($this->specialOptions["view"]) ? array_merge($options, $this->specialOptions["view"]) : $options;
+                Html::addCssClass($options, "btn-info");
+                return Html::tag("button", '<i class="material-icons">drafts</i>', $options);
             };
         }
         if (!isset($this->buttons['update'])) {
@@ -32,9 +39,11 @@ class ActionColumn extends \yii\grid\ActionColumn
                 $options = array_merge([
                     'title'      => Yii::t('yii', 'Update'),
                     'aria-label' => Yii::t('yii', 'Update'),
-                    'data-pjax'  => '0',
+                    'data-url'   => $url,
                 ], $this->buttonOptions);
-                return Html::a('<i class="fa fa-pencil"></i>', $url, $options);
+                $options = isset($this->specialOptions["update"]) ? array_merge($options, $this->specialOptions["update"]) : $options;
+                Html::addCssClass($options, "btn-success");
+                return Html::tag("button", '<i class="material-icons">edit</i>', $options);
             };
         }
         if (!isset($this->buttons['delete'])) {
@@ -42,11 +51,11 @@ class ActionColumn extends \yii\grid\ActionColumn
                 $options = array_merge([
                     'title'        => Yii::t('yii', 'Delete'),
                     'aria-label'   => Yii::t('yii', 'Delete'),
-                    'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                    'data-method'  => 'post',
-                    'data-pjax'    => '0',
+                    'data-url'   => $url,
                 ], $this->buttonOptions);
-                return Html::a('<i class="fa fa-trash"></i>', $url, $options);
+                $options = isset($this->specialOptions["delete"]) ? array_merge($options, $this->specialOptions["delete"]) : $options;
+                Html::addCssClass($options, "btn-danger");
+                return Html::tag("button", '<i class="material-icons">delete</i>', $options);
             };
         }
     }
