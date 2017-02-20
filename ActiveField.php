@@ -343,8 +343,7 @@ class ActiveField extends \yii\widgets\ActiveField
           "minHeight" => 300,
           "onInit" => "",
           "onChange" => "",
-          "onPaste" => "",
-          "onImageUpload" => "",
+          "onPaste" => ""
         ];
         $options = ArrayHelper::merge($defaultOptions, $options);
         $name = isset($options['name']) ? $options['name'] : Html::getInputName($this->model, $this->attribute);
@@ -359,6 +358,9 @@ class ActiveField extends \yii\widgets\ActiveField
             border: 1px solid #DDDDDD;
           }
         ');
+        if (isset($options["onImageUpload"])) {
+            $options["onImageUpload"] = 'onImageUpload: function() {' . $options["onImageUpload"] . '},';
+        }
         $this->form->view->registerJs('
           // 调整编辑器底部距离
           function resizeNoteEditorPostion() {
@@ -391,9 +393,7 @@ class ActiveField extends \yii\widgets\ActiveField
                 $("[name=\'' . $name . '\']").val(contents);
                 ' . $options["onPaste"] . '
               },
-              onImageUpload: function() {
-                ' . $options["onImageUpload"] . '
-              }
+              ' . (isset($options["onImageUpload"]) ? $options["onImageUpload"] : '') . '
             }
           });
         ');
