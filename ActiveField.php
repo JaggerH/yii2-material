@@ -308,8 +308,10 @@ class ActiveField extends \yii\widgets\ActiveField
     {
         Html::addCssClass($this->inputOptions, "datepicker");
         $format = isset($options["format"]) ? $options["format"] : "Y-m-d";
+        $defaultValue = isset($options["defaultValue"]) ? $options["defaultValue"] : true;
         if (!$this->model[$this->attribute]) {
-          $this->model[$this->attribute] = date($format);
+            if ($defaultValue)
+                $this->model[$this->attribute] = date($format);
         } else {
           $value = $this->model[$this->attribute];
           $this->model[$this->attribute] = date($format, strtotime($value));
