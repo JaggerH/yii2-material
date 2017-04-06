@@ -39,6 +39,9 @@ use <?=ltrim($generator->baseControllerClass, '\\')?>;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\Url;
+<?php if ($generator->enableUpload): ?>
+use yii\web\UploadedFile;
+<?php endif;?>
 
 /**
  * <?=$controllerClass?> implements the CRUD actions for <?=$modelClass?> model.
@@ -139,6 +142,21 @@ class <?=$controllerClass?> extends <?=StringHelper::basename($generator->baseCo
 
 		return $this->render('update', [ 'model' => $model ]);
     }
+
+<?php if ($generator->enableUpload): ?>
+	/**
+	 * Upload file to an existing <?=$modelClass?> model.
+	 * If upload is successful, will return a success status.
+	 * <?=implode("\n     * ", $actionParamComments) . "\n"?>
+	 * @return mixed
+	 */
+	public function actionUpload(<?=$actionParams?>) {
+        $model = $this->findModel(<?=$actionParams?>);
+        $model->file = UploadedFile::getInstance($model, 'file');
+        Yii::$app->response->format = 'json';
+        return [ 'success' => $model->upload()];
+    }
+<?php endif; ?>
 
     /**
      * Deletes an existing <?=$modelClass?> model.
