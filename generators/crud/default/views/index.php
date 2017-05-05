@@ -28,7 +28,7 @@ use <?=$generator->indexWidgetType === 'grid' ? "yii\\grid\\GridView" : "yii\\wi
     <?="<?= "?>$this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?="<?="?> Html::a("Create", ['create', 'type' => 0], ['class' => 'btn btn-success']) ?>
+        <?="<?="?> Html::a("Create", ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php if ($generator->indexWidgetType === 'grid'): ?>
