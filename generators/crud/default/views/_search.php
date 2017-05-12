@@ -10,7 +10,7 @@ echo "<?php\n";
 ?>
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use jackh\material\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model <?=ltrim($generator->searchModelClass, '\\')?> */
@@ -32,9 +32,9 @@ $count = 0;
 foreach ($generator->getColumnNames() as $attribute) {
     echo '    <div class="col-sm-2">' . "\n";
     if (++$count < 6) {
-        echo "    <?= " . $generator->generateActiveSearchField($attribute) . " ?>\n";
+        echo "      <?= " . $generator->generateActiveSearchField($attribute) . " ?>\n";
     } else {
-        echo "    <?php // echo " . $generator->generateActiveSearchField($attribute) . " ?>\n";
+        echo "      <?php // echo " . $generator->generateActiveSearchField($attribute) . " ?>\n";
     }
     echo '    </div>' . "\n\n";
 }
