@@ -41,7 +41,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
 {
 <?php if ($generator->enableUpload): ?>
     public $file;
-    public $path = "/code/<?=Inflector::camel2id(StringHelper::basename($generator->modelClass))?>";
+    public $path = "/code/upload/<?=Inflector::camel2id(StringHelper::basename($generator->modelClass))?>/";
 <?php endif; ?>
 
     /**

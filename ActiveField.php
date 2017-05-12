@@ -311,10 +311,10 @@ class ActiveField extends \yii\widgets\ActiveField
         $defaultValue = isset($options["defaultValue"]) ? $options["defaultValue"] : true;
         if (!$this->model[$this->attribute]) {
             if ($defaultValue)
-                $this->model[$this->attribute] = date($format);
+                $options["value"] = date($format);
         } else {
-          $value = $this->model[$this->attribute];
-          $this->model[$this->attribute] = date($format, strtotime($value));
+            $value = $this->model[$this->attribute];
+            $options["value"] = date($format, strtotime($value));
         }
         return parent::textInput($options);
     }
