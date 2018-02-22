@@ -1,7 +1,5 @@
 <?php
 
-use Yii;
-
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 

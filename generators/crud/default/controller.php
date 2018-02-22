@@ -166,9 +166,19 @@ class <?=$controllerClass?> extends <?=StringHelper::basename($generator->baseCo
      */
     public function actionDelete(<?=$actionParams?>)
     {
-        $model = $this->findModel(<?=$actionParams?>);
+		Yii::$app->response->format = "json";
+		$model = $this->findModel($id);
 		$model->is_delete = 1;
 		$model->save();
+		if ($result) {
+			return ["success" => $result];
+		} else {
+			foreach ($model->firstErrors as $key => $value) {
+				$firstError = $value;
+				break;
+			}
+			return ["success" => $result, "message" => $firstError];
+		}
     }
 
     /**
